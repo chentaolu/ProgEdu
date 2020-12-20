@@ -12,9 +12,9 @@ public class SettingZipHandler {
   private ZipHandler zipHandler;
   private final String tempDir = System.getProperty("java.io.tmpdir");
   private final String settingDir = tempDir + "/assignmentSetting/";
-  private static String ResourcesZipPath;
-  private static String AssignmentName;
-  private static String AssignmentPath;
+  private String ResourcesZipPath;
+  private String AssignmentName;
+  private String AssignmentPath;
   private static final Logger LOGGER = LoggerFactory
       .getLogger(SettingZipHandler.class);
 
@@ -42,6 +42,8 @@ public class SettingZipHandler {
   public void setResourcesZipPath(String resources) {
     if (resources.equals("maven")) {
       this.ResourcesZipPath = "/usr/local/tomcat/webapps/ROOT/resources/MvnQuickStart.zip";
+    } else if (resources.equals("web")) {
+      this.ResourcesZipPath = "/usr/local/tomcat/webapps/ROOT/resources/WebQuickStart.zip";
     }
   }
 
