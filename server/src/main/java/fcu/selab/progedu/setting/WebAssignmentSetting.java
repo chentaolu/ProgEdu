@@ -1,5 +1,13 @@
 package fcu.selab.progedu.setting;
 
+import java.util.List;
+import java.util.Map;
+import java.util.LinkedHashMap;
+import java.io.PrintWriter;
+import java.io.FileNotFoundException;
+
+import com.google.gson.Gson;
+
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
@@ -13,6 +21,16 @@ public class WebAssignmentSetting extends SettingZipHandler implements Assignmen
   }
 
   @Override
+  public void unZipAssignmenToTmp() {
+    super.unZipAssignmenToTmp();
+  }
+
+  @Override
+  public void packUpAssignment() {
+    super.packUpAssignment();
+  }
+
+  @Override
   public void createAssignmentSetting(List<String> order,String name) {
     Map<String, Object> mainObject = new LinkedHashMap<String, Object>();
     Map<String,String> scriptObject = new LinkedHashMap<String, String>();
@@ -21,12 +39,12 @@ public class WebAssignmentSetting extends SettingZipHandler implements Assignmen
       
     PrintWriter pw;
     try {
-      pw = new PrintWriter ("/package.json");
+      pw = new PrintWriter("/package.json");
       mainObject.put("name", name);
       mainObject.put("version", "1.0.0");
       mainObject.put("description", "sample");
       mainObject.put("main", "index.js");
-          
+      
       scriptObject.put("test", "node_modules/.bin/mocha ./src/test/*.js --timeout 100000");
       scriptObject.put("htmlhint", "htmlhint ./src/web/");
       scriptObject.put("stylelint", "stylelint ./src/web/");
@@ -57,8 +75,7 @@ public class WebAssignmentSetting extends SettingZipHandler implements Assignmen
           .replace("{", "\n{\n")
           .replace("}", "\n}\n")
           .replace(",", ",\n")
-          .replace(":", ": ")
-          );
+          .replace(":", ": "));
       pw.close();
     } catch (FileNotFoundException e) {
       e.printStackTrace();

@@ -12,9 +12,9 @@ public class SettingZipHandler {
   private ZipHandler zipHandler;
   private final String tempDir = System.getProperty("java.io.tmpdir");
   private final String settingDir = tempDir + "/assignmentSetting/";
-  private String ResourcesZipPath;
-  private String AssignmentName;
-  private String AssignmentPath;
+  private String resourcesZipPath;
+  private String assignmentName;
+  private String assignmentPath;
   private static final Logger LOGGER = LoggerFactory
       .getLogger(SettingZipHandler.class);
 
@@ -41,30 +41,30 @@ public class SettingZipHandler {
    */
   public void setResourcesZipPath(String resources) {
     if (resources.equals("maven")) {
-      this.ResourcesZipPath = "/usr/local/tomcat/webapps/ROOT/resources/MvnQuickStart.zip";
+      this.resourcesZipPath = "/usr/local/tomcat/webapps/ROOT/resources/MvnQuickStart.zip";
     } else if (resources.equals("web")) {
-      this.ResourcesZipPath = "/usr/local/tomcat/webapps/ROOT/resources/WebQuickStart.zip";
+      this.resourcesZipPath = "/usr/local/tomcat/webapps/ROOT/resources/WebQuickStart.zip";
     }
   }
 
   public String getResourcesZipPath() {
-    return this.ResourcesZipPath;
+    return this.resourcesZipPath;
   }
   
   public void setAssignmentName(String name) {
-    this.AssignmentName = name;
+    this.assignmentName = name;
   }
   
   public String getAssignmentName() {
-    return this.AssignmentName;
+    return this.assignmentName;
   }
 
   public void setAssignmentPath() {
-    this.AssignmentPath = this.settingDir + getAssignmentName();
+    this.assignmentPath = this.settingDir + getAssignmentName();
   }
   
   public String getAssignmentPath() {
-    return this.AssignmentPath;
+    return this.assignmentPath;
   }
   
   public void unZipAssignmenToTmp() {

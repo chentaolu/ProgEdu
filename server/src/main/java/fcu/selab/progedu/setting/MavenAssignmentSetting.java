@@ -28,7 +28,7 @@ public class MavenAssignmentSetting extends SettingZipHandler implements Assignm
       .getLogger(MavenAssignmentSetting.class);
 
   /**
-   * init maven assignment setting
+   * init web assignment setting
    * 
    */
   public MavenAssignmentSetting(String name) {
@@ -46,7 +46,7 @@ public class MavenAssignmentSetting extends SettingZipHandler implements Assignm
   }
 
   /**
-   * 
+   * Create pom.xml
    * @param order List Order
    * @param name AssignmentName
    */
