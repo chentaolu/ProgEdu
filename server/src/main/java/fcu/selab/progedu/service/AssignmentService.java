@@ -79,6 +79,7 @@ import fcu.selab.progedu.db.CommitRecordDbManager;
 import fcu.selab.progedu.db.ScreenshotRecordDbManager;
 import fcu.selab.progedu.service.GetAssignmentSettingService;
 import fcu.selab.progedu.setting.MavenAssignmentSetting;
+import fcu.selab.progedu.setting.WebAssignmentSetting;
 import fcu.selab.progedu.setting.AssignmentSettings;
 import fcu.selab.progedu.service.GetAssignmentSettingService;
 
@@ -840,8 +841,9 @@ public class AssignmentService {
     }
     //------------------------make pom.xml
     if (fileType.equals("maven")) {
-      MavenAssignmentSetting mas = new MavenAssignmentSetting(assignmentName);
-      gass.getSetting(mas, ordersList, assignmentName);
+      gass.getSetting(new MavenAssignmentSetting(assignmentName), ordersList, assignmentName);
+    } else if (fileType.equals("web")) {
+      gass.getSetting(new WebAssignmentSetting(assignmentName), order, name);
     }
     return Response.ok().build();
   }

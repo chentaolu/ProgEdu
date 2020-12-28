@@ -48,10 +48,12 @@ public class WebAssignmentSetting extends SettingZipHandler implements Assignmen
   public void createAssignmentSetting(List<String> order,String name) {
     
     List <String> commands = new ArrayList<String>();
+    String configPath = "/usr/local/tomcat/webapps/"
+        + "ROOT/WEB-INF/classes/jenkins/config_web.xml";
     commands = getCommand(orders);
 
     try {
-      File inputFile = new File("..\\config_web.xml");         
+      File inputFile = new File(configPath);         
       DocumentBuilderFactory docFactory =
           DocumentBuilderFactory.newInstance();
       DocumentBuilder docBuilder = 
@@ -74,7 +76,7 @@ public class WebAssignmentSetting extends SettingZipHandler implements Assignmen
         Transformer transformer = transformerFactory.newTransformer();
         transformer.setOutputProperty(OutputKeys.INDENT,"yes");
         transformer.transform(
-            new DOMSource(doc), new StreamResult(new File("..\\config_web1.xml")));
+            new DOMSource(doc), new StreamResult(new File(configPath)));
 
         System.out.println(value.getLength());
         BuildStepWithTimeoutCount = BuildStepWithTimeoutCount-2;
@@ -111,7 +113,7 @@ public class WebAssignmentSetting extends SettingZipHandler implements Assignmen
         Transformer transformer = transformerFactory.newTransformer();
         transformer.setOutputProperty(OutputKeys.INDENT,"yes");
         transformer.transform(new DOMSource(doc), 
-            new StreamResult(new File("..\\config_web1.xml")));
+            new StreamResult(new File(configPath)));
       }
     } catch (Exception e) {
       LOGGER.debug(ExceptionUtil.getErrorInfoFromException(e));
